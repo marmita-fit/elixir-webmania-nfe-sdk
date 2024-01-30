@@ -14,6 +14,13 @@ defmodule WebmaniaNfe.MixProject do
       description: "WebmaniaNfe API SDK",
       source_url: "https://github.com/jonatanrdsantos/elixir-webmania-nfe-sdk",
       homepage_url: "https://github.com/jonatanrdsantos/elixir-webmania-nfe-sdk",
+      package: [
+        licenses: ["MIT"],
+        links: %{
+          "Documentation" => "https://webmaniabr.com/docs/rest-api-nfe/",
+          "GitHub" => "https://github.com/jonatanrdsantos/elixir-webmania-nfe-sdk/"
+        }
+      ],
       docs: [
         main: "WebmaniaNfe",
         extras: ["README.md"]
