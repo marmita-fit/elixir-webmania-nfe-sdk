@@ -4,7 +4,7 @@ defmodule WebmaniaNfe.MixProject do
   def project do
     [
       app: :webmania_nfe,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -40,7 +40,7 @@ defmodule WebmaniaNfe.MixProject do
     [
       {:httpoison, "~> 2.1"},
       {:exconstructor, "~> 1.2.9"},
-      {:poison, "~> 5.0"},
+      {:poison, ">= 3.0.0 and <= 6.0.0"},
       {:ex_json_schema, "~> 0.10.1"},
       {:nestru, "~> 0.3.3"},
       {:domo, "~> 1.5"},
