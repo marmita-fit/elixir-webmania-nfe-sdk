@@ -31,66 +31,81 @@ defmodule WebmaniaNfe.Invoice.Create do
     }
   end
 
-  def new(%__MODULE__{} = create, %WebmaniaNfe.Invoice.Create.Request{} = request, %WebmaniaNfe.Invoice.Create.Response{} = response) do
+  def new(
+        %__MODULE__{} = create,
+        %WebmaniaNfe.Invoice.Create.Request{} = request,
+        %WebmaniaNfe.Invoice.Create.Response{} = response
+      ) do
     %__MODULE__{
-      create |
-      request: request,
-      response: response
+      create
+      | request: request,
+        response: response
     }
   end
+
   def new(%__MODULE__{} = create) do
     %__MODULE__{
-      create |
-      url: @path,
-      method: "POST",
-      request: %WebmaniaNfe.Invoice.Create.Request{},
-      response: %WebmaniaNfe.Invoice.Create.Response{}
+      create
+      | url: @path,
+        method: "POST",
+        request: %WebmaniaNfe.Invoice.Create.Request{},
+        response: %WebmaniaNfe.Invoice.Create.Response{}
     }
   end
 
   def new(request) when is_map(request) do
-    new() |> add(Nestru.decode_from_map!(request, WebmaniaNfe.Invoice.Create.Request))
+    new() |> add(Nestru.decode!(request, WebmaniaNfe.Invoice.Create.Request))
   end
 
   def add(%__MODULE__{} = create, %WebmaniaNfe.Invoice.Create.Request{} = request) do
     %__MODULE__{
-      create | request: request,
+      create
+      | request: request
     }
   end
 
   def add(%__MODULE__{} = create, %WebmaniaNfe.Invoice.Create.Response{} = response) do
     %__MODULE__{
-      create | response: response,
+      create
+      | response: response
     }
   end
 
   def add(%__MODULE__{} = create, %WebmaniaNfe.Client{} = client) do
     %__MODULE__{
-      create | client: client,
+      create
+      | client: client
     }
   end
 
   def request(%__MODULE__{} = create) do
     client = create.client |> WebmaniaNfe.Client.request(create)
+
     %__MODULE__{
-      create |
-      client: client,
-      response: process_response(client)
+      create
+      | client: client,
+        response: process_response(client)
     }
   end
 
   def response(%__MODULE__{} = create, response) do
     %__MODULE__{
-      create | response: response
+      create
+      | response: response
     }
   end
 
-  defp process_response(%WebmaniaNfe.Client{response: {:ok, %HTTPoison.Response{status_code: 200, body: body}}} = _client) do
+  defp process_response(
+         %WebmaniaNfe.Client{response: {:ok, %HTTPoison.Response{status_code: 200, body: body}}} =
+           _client
+       ) do
     body |> Poison.decode!(%{as: %WebmaniaNfe.Invoice.Get.Response{}})
   end
-  defp process_response(%WebmaniaNfe.Client{response: {:error, response}} = _client), do: process_response(response)
+
+  defp process_response(%WebmaniaNfe.Client{response: {:error, response}} = _client),
+    do: process_response(response)
+
   defp process_response(response) do
     response
   end
-
 end

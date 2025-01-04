@@ -67,6 +67,7 @@ defmodule WebmaniaNfe.Client do
             headers: [],
             request: nil,
             response: nil
+
   @doc """
     Build a new SDk client.
 
@@ -185,7 +186,7 @@ defmodule WebmaniaNfe.Client do
         {"X-Consumer-Secret", config.consumer_secret},
         {"X-Access-Token", config.access_token},
         {"X-Access-Token-Secret", config.access_token_secret}
-      ],
+      ]
     }
   end
 
@@ -196,15 +197,17 @@ defmodule WebmaniaNfe.Client do
       headers: client.headers,
       body: process_body(entity)
     }
+
     %__MODULE__{
-      client | request: request,
-      response: HTTPoison.request(request)
+      client
+      | request: request,
+        response: HTTPoison.request(request)
     }
   end
 
   defp process_body(entity) do
     case {entity.method, entity.request} do
-      {"POST", %_{}} -> entity.request |> Nestru.encode_to_map!() |> Poison.encode!()
+      {"POST", %_{}} -> entity.request |> Nestru.encode!() |> Poison.encode!()
       {"POST", nil} -> ""
       _ -> ""
     end
@@ -212,11 +215,21 @@ defmodule WebmaniaNfe.Client do
 
   defp process_url(client, entity) do
     case {entity.method, entity.request} do
-      {"POST", %_{}} -> client.config.base_url <> entity.url
-      {"POST", nil} -> ""
-      {"GET", %_{} = params} -> client.config.base_url <> entity.url <> "?" <> (Map.from_struct(params) |> URI.encode_query())
-      {"GET", nil} -> ""
-      _ -> ""
+      {"POST", %_{}} ->
+        client.config.base_url <> entity.url
+
+      {"POST", nil} ->
+        ""
+
+      {"GET", %_{} = params} ->
+        client.config.base_url <>
+          entity.url <> "?" <> (Map.from_struct(params) |> URI.encode_query())
+
+      {"GET", nil} ->
+        ""
+
+      _ ->
+        ""
     end
   end
 end

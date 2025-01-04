@@ -74,11 +74,12 @@ defmodule WebmaniaNfe.Invoice.Create.Request do
     :pedido
   ]
 
-  def new(request) when is_map(request), do: Nestru.decode_from_map(request, __MODULE__)
+  def new(request) when is_map(request), do: Nestru.decode(request, __MODULE__)
 
   def new({:ok, %WebmaniaNfe.Invoice.Create.Request{}} = request), do: request
 
-  def new!(request) when is_map(request), do: Nestru.decode_from_map!(request, __MODULE__)
+  def new!(request) when is_map(request), do: Nestru.decode!(request, __MODULE__)
 
-  def new!(%WebmaniaNfe.Invoice.Create.Request{} = request), do: Nestru.decode_from_map!(request, __MODULE__)
+  def new!(%WebmaniaNfe.Invoice.Create.Request{} = request),
+    do: Nestru.decode!(request, __MODULE__)
 end
