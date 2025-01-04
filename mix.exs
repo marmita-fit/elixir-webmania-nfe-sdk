@@ -40,11 +40,11 @@ defmodule WebmaniaNfe.MixProject do
     [
       {:httpoison, "~> 2.1"},
       {:exconstructor, "~> 1.2.9"},
-      {:poison, ">= 3.0.0 and <= 6.0.0"},
+      {:poison, ">= 3.0.0 and <= 7.0.0"},
       {:ex_json_schema, "~> 0.10.1"},
-      {:nestru, "~> 0.3.3"},
+      {:nestru, "~> 1.0"},
       {:domo, "~> 1.5"},
-      {:ex_doc, "~> 0.31", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.31", only: :dev, runtime: false}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]

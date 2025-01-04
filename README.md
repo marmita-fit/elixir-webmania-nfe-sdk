@@ -71,11 +71,14 @@ webmania_nfe
           total: "174.60"
         }
       })
-
-
 ```
+
+**How to run locally?**
+
+- `docker compose run --rm app bash`
+  - `mix deps.get` to install the dependencies
+  - `iex -S mix` to open the elixir REPL
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/webmania_nfe>.
-

@@ -65,11 +65,12 @@ defmodule WebmaniaNfe.Invoice.Create.Response do
     :log
   ]
 
-  def new(response) when is_map(response), do: Nestru.decode_from_map(response, __MODULE__)
+  def new(response) when is_map(response), do: Nestru.decode(response, __MODULE__)
 
   def new({:ok, %WebmaniaNfe.Invoice.Create.Response{}} = response), do: response
 
-  def new!(response) when is_map(response), do: Nestru.decode_from_map!(response, __MODULE__)
+  def new!(response) when is_map(response), do: Nestru.decode!(response, __MODULE__)
 
-  def new!(%WebmaniaNfe.Invoice.Create.Response{} = response), do: Nestru.decode_from_map!(response, __MODULE__)
+  def new!(%WebmaniaNfe.Invoice.Create.Response{} = response),
+    do: Nestru.decode!(response, __MODULE__)
 end
