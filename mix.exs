@@ -41,7 +41,7 @@ defmodule WebmaniaNfe.MixProject do
       {:httpoison, "~> 2.1"},
       {:exconstructor, "~> 1.2.9"},
       {:poison, ">= 3.0.0 and <= 7.0.0"},
-      {:ex_json_schema, "~> 0.10.1"},
+      {:ex_json_schema, "~> 0.11.1"},
       {:nestru, "~> 1.0"},
       {:domo, "~> 1.5"},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false}
